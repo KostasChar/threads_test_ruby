@@ -1,6 +1,6 @@
 #needs mutex because of unpredictable context switching 
 
-threads = []
+threads = [] # keep track of threads
 lock=Mutex.new
 threads << Thread.new do
     lock.synchronize{
@@ -12,4 +12,4 @@ threads << Thread.new do
     100.times { puts "THIS IS ABSURD" } }
     sleep(10)
 end
-threads.each { |thr| thr.join }
+threads.each { |thr| thr.join } # wait for each thread to complete
